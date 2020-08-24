@@ -64,6 +64,12 @@ stages:
 
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
+      condition: |
+        and
+        (
+        succeeded(),
+        eq(variables['Build.SourceBranchName'], 'master')
+        )
 
 - stage: 'Deploy'
   displayName: 'Deploy the web application'
